@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+import dj_database_url
 
 from pathlib import Path
 from datetime import timedelta
@@ -96,19 +97,22 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3'
         
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PWD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": os.getenv("DB_PORT"),
+        # "ENGINE": "django.db.backends.postgresql",
+        # "NAME": os.getenv("DB_NAME"),
+        # "USER": os.getenv("DB_USER"),
+        # "PASSWORD": os.getenv("DB_PWD"),
+        # "HOST": os.getenv("DB_HOST"),
+        # "PORT": os.getenv("DB_PORT"),
 
     }
 }
 
+DATABASES["default"] = dj_database_url.parse("postgres://prettyprinted_django_render_8ew2_user:xMD9Q6vrEZJ7UJ5u67PROCpDz2cPusOL@dpg-co4fifkf7o1s738rpnbg-a.oregon-postgres.render.com/prettyprinted_django_render_8ew2")
+
+# postgres://prettyprinted_django_render_8ew2_user:xMD9Q6vrEZJ7UJ5u67PROCpDz2cPusOL@dpg-co4fifkf7o1s738rpnbg-a.oregon-postgres.render.com/prettyprinted_django_render_8ew2
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
